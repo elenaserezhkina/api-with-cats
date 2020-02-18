@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from "react";
+import GifsList from "./Components/GifsList";
+// const gifs = [
+//   {
+//     img:
+//       "https://r.ddmcdn.com/w_624/s_f/o_1/cx_0/cy_17/cw_624/ch_416/APL/uploads/2014/10/lol-cat.jpg",
+//     title: "Image One"
+//   },
+//   {
+//     img:
+//       "https://yearinreview.rplechnercpa.com/rbinternet/images/cookielolcat2.jpg",
+//     title: "Image Two"
+//   }
+// ];
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      gifs: []
+    };
+  }
+  componentDidMount() {
+    // fetch API
+    fetch(
+      "https://api.giphy.com/v1/gifs/search?api_key=FAq8B6u5HNIxDEBAJDUcNvqHQ0PAObZS&q=cat&limit=25&offset=0&rating=G&lang=en"
+    )
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          // isLoaded: true,
+          gifs: result.data
+        });
+        console.log(result);
+        console.log(result.data[1].images.downsized_large.url);
+      });
+  }
+  render() {
+    const { gifs } = this.state;
+    return (
+      <div>
+        <h1>Привет Девченки!</h1>
+        <GifsList gifs={gifs} />
+      </div>
+    );
+  }
 }
 
 export default App;
