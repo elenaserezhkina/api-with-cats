@@ -1,5 +1,7 @@
 import React from "react";
 import GifsList from "./Components/GifsList";
+import SearchBox from "./Components/SearchBox";
+
 // const gifs = [
 //   {
 //     img:
@@ -19,10 +21,11 @@ class App extends React.Component {
       gifs: []
     };
   }
-  componentDidMount() {
+
+  fetchApi(userInput) {
     // fetch API
     fetch(
-      "https://api.giphy.com/v1/gifs/search?api_key=FAq8B6u5HNIxDEBAJDUcNvqHQ0PAObZS&q=birthday cats&limit=28&offset=0&rating=G&lang=en"
+      `https://api.giphy.com/v1/gifs/search?api_key=FAq8B6u5HNIxDEBAJDUcNvqHQ0PAObZS&q=${userInput}&limit=28&offset=0&rating=G&lang=en`
     )
       .then(res => res.json())
       .then(result => {
@@ -34,11 +37,16 @@ class App extends React.Component {
         console.log(result.data[1].images.downsized_large.url);
       });
   }
+
+  componentDidMount() {
+    this.fetchApi("birthday+cat");
+  }
   render() {
     const { gifs } = this.state;
     return (
       <div>
         <h1>С Днем Рождения Надин!</h1>
+        <SearchBox onSearch={query => this.fetchApi(query)} />
         <GifsList gifs={gifs} />
       </div>
     );
