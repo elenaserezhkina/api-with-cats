@@ -5,7 +5,7 @@ function GifsList({ gifs }) {
   console.log(gifs);
   return (
     <div>
-      <h1>Котики для вас</h1>
+      <h1>Эти котики для тебя</h1>
       {gifs.map((element, idx) => (
         <Gif key={idx} gifs={element} />
       ))}

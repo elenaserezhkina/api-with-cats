@@ -22,7 +22,7 @@ class App extends React.Component {
   componentDidMount() {
     // fetch API
     fetch(
-      "https://api.giphy.com/v1/gifs/search?api_key=FAq8B6u5HNIxDEBAJDUcNvqHQ0PAObZS&q=cat&limit=25&offset=0&rating=G&lang=en"
+      "https://api.giphy.com/v1/gifs/search?api_key=FAq8B6u5HNIxDEBAJDUcNvqHQ0PAObZS&q=birthday cats&limit=28&offset=0&rating=G&lang=en"
     )
       .then(res => res.json())
       .then(result => {
@@ -38,7 +38,7 @@ class App extends React.Component {
     const { gifs } = this.state;
     return (
       <div>
-        <h1>Привет Девченки!</h1>
+        <h1>С Днем Рождения Надин!</h1>
         <GifsList gifs={gifs} />
       </div>
     );

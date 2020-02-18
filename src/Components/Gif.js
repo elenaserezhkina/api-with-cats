@@ -6,11 +6,7 @@ function Gif({ gifs }) {
   const styles = {
     backgroundImage: `url("${gifs.images.downsized_large.url}")`
   };
-  return (
-    <div style={styles} className="gif-image">
-      <h1></h1>
-    </div>
-  );
+  return <div style={styles} className="gif-image"></div>;
 }
 
 export default Gif;
